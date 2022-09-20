@@ -7,8 +7,8 @@ services:
       - ./:/app:delegated
     ports:
       - '8000:80'
-    links:
-      - mysql
+#   links:
+#      - mysql
 #  mysql:
 #    image:
 #    volumes:
