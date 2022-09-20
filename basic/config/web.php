@@ -13,8 +13,13 @@ $config = [
     ],
     'modules' => [
         'order' => [
-            'class' => 'app\modules\orders\Orders',
+
         ],
+        'gii' => [
+            'class' => 'yii\gii\Module',
+            'allowedIPs' => ['172.20.0.1'] // adjust this to your needs
+        ],
+
     ],
     'components' => [
         'request' => [
@@ -65,15 +70,19 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['172.20.0.1', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['172.18.0.1', '::1'],
+        'allowedIPs' => ['172.20.0.1', '::1'],
     ];
+   /* $config['bootstrap'][] = 'orders';
+    $config['modules']['gii'] = [
+        'class' => 'app\modules\orders\Orders',
+    ];*/
 }
 
 return $config;

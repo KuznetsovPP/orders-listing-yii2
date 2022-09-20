@@ -21,13 +21,27 @@ class m220920_064100_create_orders_table extends Migration
             'status' => $this->tinyInteger(1)->notNull()->comment('0 - Pending, 1 - In progress, 2 - Completed, 3 - Canceled, 4 - Fail'),
             'created_at' => $this->integer()->notNull(),
             'mode' => $this->tinyInteger(1)->notNull()->comment('0 - Manual, 1 - Auto')
-        ], 'DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_estonian_ci');
+        ], 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT');
 
-        /*$this->addForeignKey(
+        $this->addForeignKey(
+            'fk-orders-user_id',
+            'orders',
+            'user_id',
+            'users',
+            'id',
+            'NO ACTION'
+        );
 
-        );*/
+        $this->addForeignKey(
+            'fk-orders-service_id',
+            'orders',
+            'service_id',
+            'services',
+            'id',
+            'NO ACTION'
+        );
 
-        $this->execute(file_get_contents('migrations/test_db_data.sql'));
+        $this->execute(file_get_contents('migrations/orders.sql'));
     }
 
     /**
